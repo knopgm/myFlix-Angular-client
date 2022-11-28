@@ -22,7 +22,7 @@ export class FetchApiDataService {
   public userRegistration(userDetails: any): Observable<any> {
     console.log(userDetails);
     return this.http
-      .post(apiUrl + 'users', userDetails)
+      .post(apiUrl + '/users', userDetails)
       .pipe(catchError(this.handleError));
   }
 
@@ -30,7 +30,7 @@ export class FetchApiDataService {
   public userLogin(userDetails: any): Observable<any> {
     console.log(userDetails);
     return this.http
-      .post(apiUrl + 'login', userDetails)
+      .post(apiUrl + '/login', userDetails)
       .pipe(catchError(this.handleError));
   }
 
@@ -43,7 +43,7 @@ export class FetchApiDataService {
   public getOneMovie(title: string): Observable<any> {
     console.log(title);
     return this.http
-      .get(apiUrl + 'movies/' + title)
+      .get(apiUrl + '/movies/' + title)
       .pipe(catchError(this.handleError));
   }
 
@@ -51,7 +51,7 @@ export class FetchApiDataService {
   public getDirector(name: string): Observable<any> {
     console.log(name);
     return this.http
-      .get(apiUrl + 'director/' + name)
+      .get(apiUrl + '/director/' + name)
       .pipe(catchError(this.handleError));
   }
 
@@ -59,7 +59,7 @@ export class FetchApiDataService {
   public getGenre(title: string): Observable<any> {
     console.log(title);
     return this.http
-      .get(apiUrl + 'movies/genre/' + title)
+      .get(apiUrl + '/movies/genre/' + title)
       .pipe(catchError(this.handleError));
   }
 
@@ -67,7 +67,7 @@ export class FetchApiDataService {
   public addFavoriteMovie(username: string, movieID: string): Observable<any> {
     console.log(username, movieID);
     return this.http
-      .post(apiUrl + `users/${username}/movies/${movieID}`, {})
+      .post(apiUrl + `/users/${username}/movies/${movieID}`, {})
       .pipe(catchError(this.handleError));
   }
 
@@ -75,7 +75,7 @@ export class FetchApiDataService {
   public updateUser(name: string, userDetails: any): Observable<any> {
     console.log(name, userDetails);
     return this.http
-      .put(apiUrl + 'users/' + name, userDetails)
+      .put(apiUrl + '/users/' + name, userDetails)
       .pipe(catchError(this.handleError));
   }
 
@@ -83,7 +83,7 @@ export class FetchApiDataService {
   public deleteUser(name: string): Observable<any> {
     console.log(name);
     return this.http
-      .delete(apiUrl + 'users/' + name)
+      .delete(apiUrl + '/users/' + name)
       .pipe(catchError(this.handleError));
   }
 
@@ -94,7 +94,7 @@ export class FetchApiDataService {
   ): Observable<any> {
     console.log(username, movieID);
     return this.http
-      .delete(apiUrl + `users/${username}/movies/${movieID}`, {})
+      .delete(apiUrl + `/users/${username}/movies/${movieID}`, {})
       .pipe(catchError(this.handleError));
   }
 
@@ -102,7 +102,7 @@ export class FetchApiDataService {
   public getUser(name: string): Observable<any> {
     console.log(name);
     return this.http
-      .get(apiUrl + `users/` + name)
+      .get(apiUrl + `/users/` + name)
       .pipe(catchError(this.handleError));
   }
 
