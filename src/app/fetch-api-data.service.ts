@@ -36,7 +36,9 @@ export class FetchApiDataService {
 
   //3. Get all movies enpoint
   public getAllMovies(): Observable<any> {
-    return this.http.get(apiUrl + 'movies').pipe(catchError(this.handleError));
+    return this.http
+      .get(apiUrl + '/movies', this.getHttpOptions())
+      .pipe(catchError(this.handleError));
   }
 
   //4. Get one movie
@@ -120,5 +122,15 @@ export class FetchApiDataService {
   private extractResponseData(res: any): any {
     const body = res;
     return body || {};
+  }
+
+  private getHttpOptions() {
+    const token = localStorage.getItem('token');
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: `Bearer ${token}`,
+      }),
+    };
+    return httpOptions;
   }
 }
