@@ -104,7 +104,7 @@ export class FetchApiDataService {
   public getUser(name: string): Observable<any> {
     console.log(name);
     return this.http
-      .get(apiUrl + `/users/` + name)
+      .get(apiUrl + `/users/` + name, this.getHttpOptions())
       .pipe(catchError(this.handleError));
   }
 
