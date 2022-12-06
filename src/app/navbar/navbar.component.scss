@@ -1,8 +1,3 @@
-$cardColor: rgb(56, 56, 56);
-$textColor: #fff;
-$directedColor: rgb(197, 197, 197);
-$boxShadowColor: #1e1e1e;
-
 .nav-bar {
   position: fixed;
   top: 0;
@@ -12,11 +7,4 @@ $boxShadowColor: #1e1e1e;
   z-index: 99999999;
   align-items: center;
   height: 45px;
-  color: $textColor;
-  border-bottom: $boxShadowColor;
-  background-color: $cardColor;
-}
-
-.logout-button {
-  color: $directedColor;
 }
