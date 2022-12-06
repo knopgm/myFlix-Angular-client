@@ -2,6 +2,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
 
+import { GenreComponent } from '../genre/genre.component';
+import { DirectorComponent } from '../director/director.component';
+import { MovieDetailsComponent } from '../movie-details/movie-details.component';
+
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 @Component({
   selector: 'app-movie-card',
   templateUrl: './movie-card.component.html',
@@ -9,17 +16,148 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 })
 export class MovieCardComponent {
   movies: any[] = [];
-  constructor(public fetchApiData: FetchApiDataService) {}
+  favorites: any[] = [];
+
+  username = localStorage.getItem('user');
+  password = localStorage.getItem('password');
+
+  constructor(
+    public fetchApiData: FetchApiDataService,
+    public dialog: MatDialog,
+    public snackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
     this.getMovies();
+    // this.getFavorites();
   }
+
+  /**
+   * Fetch movies via API and set movies state to returned JSON file
+   * @returns array holding movies objects
+   * @function getMovies
+   */
 
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
       console.log(this.movies);
       return this.movies;
+    });
+  }
+
+  /**
+   * Fetch user info via API and set favorites state to returned JSON file
+   * @returns array holding IDs of favorites
+   * @function getFavorites
+   */
+
+  // getFavorites(): void {
+  //   this.fetchApiData.getUser(this.username).subscribe((resp: any) => {
+  //     this.favorites = resp.FavoriteMovies;
+  //     console.log(this.favorites);
+  //     return this.favorites;
+  //   });
+  // }
+
+  /**
+   * Checks if a movie is included in a user's favorite movies
+   * @param {string} id
+   * @returns boolean
+   * @function isFavorite
+   */
+
+  isFavorite(id: string): boolean {
+    return this.favorites.includes(id);
+  }
+
+  /**
+   * Adds a movie to a user's favorites via an API call
+   * @param {string} id
+   * @function addToFavorites
+   */
+
+  // addToFavorites(id: string): void {
+  //   console.log(id);
+  //   this.fetchApiData.addFavoriteMovie(username: string, id).subscribe((result) => {
+  //     console.log(result);
+  //     this.snackBar.open('Movie added to favorites', 'OK', {
+  //       duration: 2000,
+  //     });
+  //     this.ngOnInit();
+  //   });
+  // }
+
+  /**
+   * Removes a movie from a user's favorites via an API call
+   * @param {string} id
+   * @function removeFromFavorites
+   */
+
+  // removeFromFavorites(id: string): void {
+  //   console.log(id);
+  //   this.fetchApiData.removeFavoriteMovie(username, id).subscribe((result) => {
+  //     console.log(result);
+  //     this.snackBar.open('Movie removed from favorites', 'OK', {
+  //       duration: 2000,
+  //     });
+  //     this.ngOnInit();
+  //   });
+  // }
+
+  /**
+   * Opens genre information from GenreComponent
+   * @param {string} name
+   * @param {string} description
+   * @function openGenre
+   */
+
+  openGenre(name: string, description: string): void {
+    this.dialog.open(GenreComponent, {
+      data: {
+        name: name,
+        description: description,
+      },
+      panelClass: 'genre-dialog-background',
+      width: '400px',
+    });
+  }
+
+  /**
+   * Opens director information from DirectorComponent
+   * @param {string} name
+   * @param {string} bio
+   * @param {string} birthday
+   * @function openDirector
+   */
+
+  openDirector(name: string, bio: string, birthday: string): void {
+    this.dialog.open(DirectorComponent, {
+      data: {
+        name: name,
+        bio: bio,
+        birth: birthday,
+      },
+      panelClass: 'director-dialog-background',
+      width: '400px',
+    });
+  }
+
+  /**
+   * Opens movie details from MovieDetailsComponent
+   * @param {string} title
+   * @param {string} description
+   * @function openSummary
+   */
+
+  openSummary(title: string, description: string): void {
+    this.dialog.open(MovieDetailsComponent, {
+      data: {
+        title: title,
+        description: description,
+      },
+      panelClass: 'summary-dialog-background',
+      width: '400px',
     });
   }
 }

@@ -1,0 +1,21 @@
+<mat-card class="summary-dialog">
+  <mat-card-title class="summary-dialog-title">
+    {{ data.title }}
+  </mat-card-title>
+  <br />
+  <mat-dialog-content class="summary-dialog-content">
+    <b>Description: </b>
+    {{ data.description }}
+  </mat-dialog-content>
+  <mat-card-actions class="summary-actions">
+    <button
+      class="summary-close-button"
+      mat-stroked-button
+      aria-label="Close the summary button"
+      mat-dialog-close
+      color="primary"
+    >
+      X
+    </button>
+  </mat-card-actions>
+</mat-card>

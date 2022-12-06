@@ -14,9 +14,27 @@
       alt="{{ movie.title }}"
     />
     <mat-card-actions>
-      <button mat-button color="primary">Genre</button>
-      <button mat-button color="primary">Director</button>
-      <button mat-button color="primary">Synopsis</button>
+      <button
+        mat-button
+        (click)="openGenre(movie.genre.name, movie.genre.description)"
+      >
+        Genre
+      </button>
+      <button
+        mat-button
+        (click)="
+          openDirector(
+            movie.director.name,
+            movie.director.bio,
+            movie.director.birthyear
+          )
+        "
+      >
+        Director
+      </button>
+      <button mat-button (click)="openSummary(movie.title, movie.description)">
+        Synopsis
+      </button>
       <mat-icon>favorite_border</mat-icon>
     </mat-card-actions>
   </mat-card>

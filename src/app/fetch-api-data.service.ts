@@ -74,18 +74,19 @@ export class FetchApiDataService {
   }
 
   //8. Update user info
-  public updateUser(name: string, userDetails: any): Observable<any> {
-    console.log(name, userDetails);
+  public updateUser(updatedUser: any): Observable<any> {
+    const username = localStorage.getItem('user');
+    const token = localStorage.getItem('token');
     return this.http
-      .put(apiUrl + '/users/' + name, userDetails)
+      .put(`${apiUrl}/users/${username}`, updatedUser, this.getHttpOptions())
       .pipe(catchError(this.handleError));
   }
 
   //9. Delete user
-  public deleteUser(name: string): Observable<any> {
-    console.log(name);
+  public deleteUser(): Observable<any> {
+    const username = localStorage.getItem('user');
     return this.http
-      .delete(apiUrl + '/users/' + name)
+      .delete(`${apiUrl}/users/${username}`, this.getHttpOptions())
       .pipe(catchError(this.handleError));
   }
 
@@ -101,10 +102,10 @@ export class FetchApiDataService {
   }
 
   //11. Get user and get favorite movies of a user
-  public getUser(name: string): Observable<any> {
-    console.log(name);
+  public getUser(): Observable<any> {
+    const username = localStorage.getItem('user');
     return this.http
-      .get(apiUrl + `/users/` + name, this.getHttpOptions())
+      .get(`${apiUrl}/users/${username}`, this.getHttpOptions())
       .pipe(catchError(this.handleError));
   }
 
@@ -117,11 +118,6 @@ export class FetchApiDataService {
       );
     }
     return throwError('Something bad happened; please try again later.');
-  }
-  // Non-typed response extraction
-  private extractResponseData(res: any): any {
-    const body = res;
-    return body || {};
   }
 
   private getHttpOptions() {
