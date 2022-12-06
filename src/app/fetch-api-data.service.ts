@@ -66,17 +66,22 @@ export class FetchApiDataService {
   }
 
   //7. Add movie to favorite Movies
-  public addFavoriteMovie(username: string, movieID: string): Observable<any> {
-    console.log(username, movieID);
+  public addFavoriteMovie(movieID: string): Observable<any> {
+    console.log(movieID);
+    const username = localStorage.getItem('user');
+
     return this.http
-      .post(apiUrl + `/users/${username}/movies/${movieID}`, {})
+      .post(
+        apiUrl + `/users/${username}/movies/${movieID}`,
+        {},
+        this.getHttpOptions()
+      )
       .pipe(catchError(this.handleError));
   }
 
   //8. Update user info
   public updateUser(updatedUser: any): Observable<any> {
     const username = localStorage.getItem('user');
-    const token = localStorage.getItem('token');
     return this.http
       .put(`${apiUrl}/users/${username}`, updatedUser, this.getHttpOptions())
       .pipe(catchError(this.handleError));
@@ -91,13 +96,13 @@ export class FetchApiDataService {
   }
 
   //10. Remove movie from favorite movies list
-  public removeFavoriteMovie(
-    username: string,
-    movieID: string
-  ): Observable<any> {
-    console.log(username, movieID);
+  public removeFavoriteMovie(movieID: string): Observable<any> {
+    const username = localStorage.getItem('user');
     return this.http
-      .delete(apiUrl + `/users/${username}/movies/${movieID}`, {})
+      .delete(
+        apiUrl + `/users/${username}/movies/${movieID}`,
+        this.getHttpOptions()
+      )
       .pipe(catchError(this.handleError));
   }
 

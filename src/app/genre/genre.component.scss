@@ -4,6 +4,7 @@ $boxShadowColor: #1e1e1e;
 
 .genre-dialog {
   background-color: $cardColor;
+  padding: 16px;
   margin-top: 0;
   box-shadow: none;
 }
@@ -20,7 +21,7 @@ $boxShadowColor: #1e1e1e;
   position: absolute;
   top: 0;
   right: 0;
-  padding: 0;
+  padding: 16px;
   line-height: 14px;
   min-width: auto;
   border: none;

@@ -29,7 +29,7 @@ export class MovieCardComponent {
 
   ngOnInit(): void {
     this.getMovies();
-    // this.getFavorites();
+    this.getFavorites();
   }
 
   /**
@@ -52,13 +52,13 @@ export class MovieCardComponent {
    * @function getFavorites
    */
 
-  // getFavorites(): void {
-  //   this.fetchApiData.getUser(this.username).subscribe((resp: any) => {
-  //     this.favorites = resp.FavoriteMovies;
-  //     console.log(this.favorites);
-  //     return this.favorites;
-  //   });
-  // }
+  getFavorites(): void {
+    this.fetchApiData.getUser().subscribe((resp: any) => {
+      this.favorites = resp.favoriteMovies;
+      console.log(this.favorites);
+      return this.favorites;
+    });
+  }
 
   /**
    * Checks if a movie is included in a user's favorite movies
@@ -77,16 +77,16 @@ export class MovieCardComponent {
    * @function addToFavorites
    */
 
-  // addToFavorites(id: string): void {
-  //   console.log(id);
-  //   this.fetchApiData.addFavoriteMovie(username: string, id).subscribe((result) => {
-  //     console.log(result);
-  //     this.snackBar.open('Movie added to favorites', 'OK', {
-  //       duration: 2000,
-  //     });
-  //     this.ngOnInit();
-  //   });
-  // }
+  addToFavorites(id: string): void {
+    console.log(id);
+    this.fetchApiData.addFavoriteMovie(id).subscribe((result) => {
+      console.log(result);
+      this.snackBar.open('Movie added to favorites', 'OK', {
+        duration: 2000,
+      });
+      this.ngOnInit();
+    });
+  }
 
   /**
    * Removes a movie from a user's favorites via an API call
@@ -94,16 +94,16 @@ export class MovieCardComponent {
    * @function removeFromFavorites
    */
 
-  // removeFromFavorites(id: string): void {
-  //   console.log(id);
-  //   this.fetchApiData.removeFavoriteMovie(username, id).subscribe((result) => {
-  //     console.log(result);
-  //     this.snackBar.open('Movie removed from favorites', 'OK', {
-  //       duration: 2000,
-  //     });
-  //     this.ngOnInit();
-  //   });
-  // }
+  removeFromFavorites(id: string): void {
+    console.log(id);
+    this.fetchApiData.removeFavoriteMovie(id).subscribe((result) => {
+      console.log(result);
+      this.snackBar.open('Movie removed from favorites', 'OK', {
+        duration: 2000,
+      });
+      this.ngOnInit();
+    });
+  }
 
   /**
    * Opens genre information from GenreComponent
