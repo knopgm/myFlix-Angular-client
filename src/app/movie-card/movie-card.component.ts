@@ -149,7 +149,6 @@ export class MovieCardComponent {
    * @param {string} description
    * @function openSummary
    */
-
   openSummary(title: string, description: string): void {
     this.dialog.open(MovieDetailsComponent, {
       data: {
