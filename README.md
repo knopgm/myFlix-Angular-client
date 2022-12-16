@@ -2,6 +2,14 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.9.
 
+## Description
+
+This web application is a interactive movie store where users can not only search information about movies, genre and directors, but also keep a list of their favorite ones after a short registration.
+
+## Project dependencies
+
+As a Angular project, it has it's dependencies on **Angular material** for the UI and **Typescript** for preventing errors in the production line.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
